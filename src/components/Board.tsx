@@ -1,36 +1,29 @@
-function Board() {
+import type { Squares } from '../types'
+
+// Board は「見せるだけ」。更新の中身は知らない
+// Board が親（App）から受け取るものの型
+type Props = {
+  // いまの盤面（9マスの配列）
+  squares: Squares
+  // マスが押されたとき呼ぶ関数
+  // index: 押されたマスの番号（0〜8）
+  // void: この関数は戻り値を返さない
+  onSquareClick: (index: number) => void
+}
+
+function Board({ squares, onSquareClick }: Props) {
   return (
-    <div className="w-full h-full bg-red-500">
-      <h1>Board</h1>
-      <div className="grid grid-cols-3 grid-rows-3 gap-2">
-      <button type="button" onClick={...}>
-  {board[0] ? 'X' : 'O'}
-</button>
-        <button type="button" onClick={...}>
-  {board[1] ? 'X' : 'O'}
-</button>
-        <button type="button" onClick={...}>
-  {board[2] ? 'X' : 'O'}
-</button>
-        <button type="button" onClick={...}>
-  {board[3] ? 'X' : 'O'}
-</button>
-        <button type="button" onClick={...}>
-  {board[4] ? 'X' : 'O'}
-</button>
-        <button type="button" onClick={...}>
-  {board[5] ? 'X' : 'O'}
-</button>
-        <button type="button" onClick={...}>
-  {board[6] ? 'X' : 'O'}
-</button>
-        <button type="button" onClick={...}>
-  {board[7] ? 'X' : 'O'}
-</button>
-        <button type="button" onClick={...}>
-  {board[8] ? 'X' : 'O'}
-</button>
-      </div>
+    <div className="grid w-48 grid-cols-3 gap-2">
+      {squares.map((value, index) => (
+        <button
+          key={index}
+          type="button"
+          className="h-16 border border-black text-2xl"
+          onClick={() => onSquareClick(index)}
+        >
+          {value}
+        </button>
+      ))}
     </div>
   )
 }
