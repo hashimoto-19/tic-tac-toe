@@ -54,8 +54,12 @@ export default function Board() {
     // ⑥ 新しい盤面で画面を更新する
     setSquares(copy)
 
-    // ⑦ 次の人の番にする
-    setIsOTurn(!isOTurn)
+    // ⑦ 次の人の番にする　最初はtureからスタート
+    if (isOTurn) {
+      setIsOTurn(false)
+    } else {
+      setIsOTurn(true)
+    }
   }
 
   return (
