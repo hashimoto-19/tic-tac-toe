@@ -36,127 +36,143 @@ export default function Board() {
   // 押したら ○ か ✕ を置いて、次の人の番にする
   function handleClick1() {
     // すでに置いてあるマスは何もしない
-    if (square1 === "○" || square1 === "✕") {
+    if (isMark(square1)) {
       // 処理を止める
       return;
     }
     if (isOTurn) {
       setSquare1("○");
+      setIsOTurn(false);
     } else {
       setSquare1("✕");
+      setIsOTurn(true);
     }
-    // 次の人の番にする
-    setIsOTurn(!isOTurn);
   }
   function handleClick2() {
-    if (square2 === "○" || square2 === "✕") {
+    if (isMark(square2)) {
       return;
     }
     if (isOTurn) {
       setSquare2("○");
+      setIsOTurn(false);
     } else {
       setSquare2("✕");
+      setIsOTurn(true);
     }
-    setIsOTurn(!isOTurn);
   }
   function handleClick3() {
-    if (square3 === "○" || square3 === "✕") {
+    if (isMark(square3)) {
       return;
     }
     if (isOTurn) {
       setSquare3("○");
+      setIsOTurn(false);
     } else {
       setSquare3("✕");
+      setIsOTurn(true);
     }
-    setIsOTurn(!isOTurn);
   }
   function handleClick4() {
-    if (square4 === "○" || square4 === "✕") {
+    if (isMark(square4)) {
       return;
     }
     if (isOTurn) {
       setSquare4("○");
+      setIsOTurn(false);
     } else {
       setSquare4("✕");
+      setIsOTurn(true);
     }
-    setIsOTurn(!isOTurn);
   }
   function handleClick5() {
-    if (square5 === "○" || square5 === "✕") {
+    if (isMark(square5)) {
       return;
     }
     if (isOTurn) {
       setSquare5("○");
+      setIsOTurn(false);
     } else {
       setSquare5("✕");
+      setIsOTurn(true);
     }
-    setIsOTurn(!isOTurn);
   }
   function handleClick6() {
-    if (square6 === "○" || square6 === "✕") {
+    if (isMark(square6)) {
       return;
     }
     if (isOTurn) {
       setSquare6("○");
+      setIsOTurn(false);
     } else {
       setSquare6("✕");
+      setIsOTurn(true);
     }
-    setIsOTurn(!isOTurn);
   }
   function handleClick7() {
-    if (square7 === "○" || square7 === "✕") {
+    if (isMark(square7)) {
       return;
     }
     if (isOTurn) {
       setSquare7("○");
+      setIsOTurn(false);
     } else {
       setSquare7("✕");
+      setIsOTurn(true);
     }
-    setIsOTurn(!isOTurn);
   }
   function handleClick8() {
-    if (square8 === "○" || square8 === "✕") {
+    if (isMark(square8)) {
       return;
     }
     if (isOTurn) {
       setSquare8("○");
+      setIsOTurn(false);
     } else {
       setSquare8("✕");
+      setIsOTurn(true);
     }
-    setIsOTurn(!isOTurn);
   }
   function handleClick9() {
-    if (square9 === "○" || square9 === "✕") {
+    if (isMark(square9)) {
       return;
     }
     if (isOTurn) {
       setSquare9("○");
+      setIsOTurn(false);
     } else {
       setSquare9("✕");
+      setIsOTurn(true);
     }
-    setIsOTurn(!isOTurn);
   }
   return (
     <>
       <div className="flex">
-        <Square value={squares[0]} onClick={() => handleClick(0)} />
-        <Square value={squares[1]} onClick={() => handleClick(1)} />
-        <Square value={squares[2]} onClick={() => handleClick(2)} />
+        <Square value={square1} onClick={handleClick1} />
+        <Square value={square2} onClick={handleClick2} />
+        <Square value={square3} onClick={handleClick3} />
       </div>
       <div className="flex">
-        <Square value={squares[3]} onClick={() => handleClick(3)} />
-        <Square value={squares[4]} onClick={() => handleClick(4)} />
-        <Square value={squares[5]} onClick={() => handleClick(5)} />
+        <Square value={square4} onClick={handleClick4} />
+        <Square value={square5} onClick={handleClick5} />
+        <Square value={square6} onClick={handleClick6} />
       </div>
       <div className="flex">
-        <Square value={squares[6]} onClick={() => handleClick(6)} />
-        <Square value={squares[7]} onClick={() => handleClick(7)} />
-        <Square value={squares[8]} onClick={() => handleClick(8)} />
+        <Square value={square7} onClick={handleClick7} />
+        <Square value={square8} onClick={handleClick8} />
+        <Square value={square9} onClick={handleClick9} />
       </div>
       <button
-        onClick={() =>
-          setSquares(["1", "2", "3", "4", "5", "6", "7", "8", "9"])
-        }
+        onClick={() => {
+          setSquare1("1");
+          setSquare2("2");
+          setSquare3("3");
+          setSquare4("4");
+          setSquare5("5");
+          setSquare6("6");
+          setSquare7("7");
+          setSquare8("8");
+          setSquare9("9");
+        }}
       >
         リセット
       </button>
