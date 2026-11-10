@@ -9,7 +9,10 @@ type SquareProps = {
 // マス1つ分のボタン
 function Square({ value, onClick }: SquareProps) {
   return (
-    <button className="h-24 w-24 border text-3xl" onClick={onClick}>
+    <button
+      className="h-24 w-24 border-2 border-slate-300 bg-white text-3xl font-semibold text-slate-800 transition hover:bg-slate-50 active:bg-slate-100"
+      onClick={onClick}
+    >
       {value}
     </button>
   );
@@ -164,49 +167,68 @@ export default function Board() {
       break
     }
   }
-  let message = null
-  if (winner) {
-    message = <p>{winner}の勝ちです！</p>
-  }
-
-  
   return (
-    <>
-      <div className="flex">
-        <Square value={square1} onClick={handleClick1} />
-        <Square value={square2} onClick={handleClick2} />
-        <Square value={square3} onClick={handleClick3} />
+    <div className="flex min-h-screen items-center justify-center bg-slate-100 px-4">
+      <div className="board w-full max-w-md rounded-2xl bg-white p-6 shadow-lg">
+        <h1 className="mb-4 text-center text-2xl font-bold text-slate-800">
+          三目並べ
+        </h1>
+
+        <div className="mx-auto w-fit overflow-hidden rounded-xl border-2 border-slate-400">
+          <div className="flex">
+            <Square value={square1} onClick={handleClick1} />
+            <Square value={square2} onClick={handleClick2} />
+            <Square value={square3} onClick={handleClick3} />
+          </div>
+          <div className="flex">
+            <Square value={square4} onClick={handleClick4} />
+            <Square value={square5} onClick={handleClick5} />
+            <Square value={square6} onClick={handleClick6} />
+          </div>
+          <div className="flex">
+            <Square value={square7} onClick={handleClick7} />
+            <Square value={square8} onClick={handleClick8} />
+            <Square value={square9} onClick={handleClick9} />
+          </div>
+        </div>
+
+        <div className="mt-6 flex flex-wrap justify-center gap-2">
+          <button
+            className="rounded-lg bg-slate-800 px-4 py-2 text-sm text-white hover:bg-slate-700"
+            onClick={() => {
+              setSquare1("1");
+              setSquare2("2");
+              setSquare3("3");
+              setSquare4("4");
+              setSquare5("5");
+              setSquare6("6");
+              setSquare7("7");
+              setSquare8("8");
+              setSquare9("9");
+            }}
+          >
+            リセット
+          </button>
+          <button
+            className="rounded-lg border border-slate-300 px-4 py-2 text-sm hover:bg-slate-50"
+            onClick={() => setIsOTurn(true)}
+          >
+            ○の番にできる
+          </button>
+          <button
+            className="rounded-lg border border-slate-300 px-4 py-2 text-sm hover:bg-slate-50"
+            onClick={() => setIsOTurn(false)}
+          >
+            ✕の番にできる
+          </button>
+        </div>
+
+        {winner && (
+          <p className="mt-4 text-center text-lg font-semibold text-emerald-600">
+            {winner}の勝ちです！
+          </p>
+        )}
       </div>
-      <div className="flex">
-        <Square value={square4} onClick={handleClick4} />
-        <Square value={square5} onClick={handleClick5} />
-        <Square value={square6} onClick={handleClick6} />
-      </div>
-      <div className="flex">
-        <Square value={square7} onClick={handleClick7} />
-        <Square value={square8} onClick={handleClick8} />
-        <Square value={square9} onClick={handleClick9} />
-      </div>
-      <button
-        onClick={() => {
-          setSquare1("1");
-          setSquare2("2");
-          setSquare3("3");
-          setSquare4("4");
-          setSquare5("5");
-          setSquare6("6");
-          setSquare7("7");
-          setSquare8("8");
-          setSquare9("9");
-        }}
-      >
-        リセット
-      </button>
-      <button onClick={() => setIsOTurn(true)}>○の番にできる</button>
-      <button onClick={() => setIsOTurn(false)}>✕の番にできる</button>
-      
-      
-      {message}
-    </>
+    </div>
   );
 }
