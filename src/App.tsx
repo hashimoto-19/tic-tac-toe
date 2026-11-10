@@ -47,6 +47,7 @@ export default function Board() {
       setSquare1("✕");
       setIsOTurn(true);
     }
+    
   }
   function handleClick2() {
     if (isMark(square2)) {
@@ -144,6 +145,31 @@ export default function Board() {
       setIsOTurn(true);
     }
   }
+  // この3マスが揃ったら勝ち
+  const lines = [
+    [square1, square2, square3], // 横
+    [square4, square5, square6],
+    [square7, square8, square9],
+    [square1, square4, square7], // 縦
+    [square2, square5, square8],
+    [square3, square6, square9],
+    [square1, square5, square9], // 斜め
+    [square3, square5, square7],
+  ]
+
+  let winner = null
+  for (const [a, b, c] of lines) {
+    if (a === b && b === c && isMark(a)) {
+      winner = a
+      break
+    }
+  }
+  let message = null
+  if (winner) {
+    message = <p>{winner}の勝ちです！</p>
+  }
+
+  
   return (
     <>
       <div className="flex">
@@ -178,6 +204,9 @@ export default function Board() {
       </button>
       <button onClick={() => setIsOTurn(true)}>○の番にできる</button>
       <button onClick={() => setIsOTurn(false)}>✕の番にできる</button>
+      
+      
+      {message}
     </>
   );
 }
